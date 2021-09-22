@@ -31,7 +31,9 @@ import ua.lviv.lgs.abit.security.CustomAbiturientDetailsService;
 		protected void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests()
 			.antMatchers("/").permitAll()
+			.antMatchers("/create-faculty").access("hasRole('ROLE_ABITURIENT') or hasRole('ROLE_ADMIN')")
 			.antMatchers("/home").access("hasRole('ROLE_ABITURIENT')").anyRequest().permitAll().and()
+			
 					
 			.formLogin().loginPage("/login")
 			.defaultSuccessUrl("/home").usernameParameter("email").passwordParameter("password").and()
