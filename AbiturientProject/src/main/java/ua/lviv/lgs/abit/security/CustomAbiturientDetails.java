@@ -29,7 +29,7 @@ public class CustomAbiturientDetails extends Abiturient implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return super.getFirstname();
+		return super.getEmail();
 	}
 
 	@Override

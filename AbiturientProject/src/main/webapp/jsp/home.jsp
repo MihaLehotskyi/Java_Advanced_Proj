@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@
 		<div class="w3-sidebar w3-bar-block" style="width: 10%">
 			<a href="/create-faculty" class="w3-bar-item w3-button">Create
 				faculty</a> <a href="/home" class="w3-bar-item w3-button">Home</a> <a
-				href="#" class="w3-bar-item w3-button">My faculties</a>
+				href="/myFaculties" class="w3-bar-item w3-button">My faculties</a>
 		</div>
 
 		<div style="margin-left: 10%">
@@ -59,7 +60,12 @@
 							<p>${currentFaculty.minimalpoint}</p>
 							<br>
 						</div>
-						<button class="w3-button w3-block w3-dark-grey">Submit documents to the university</button>
+						<form:form action="${contextPath}/myFacultie" method="POST" enctype="multipart/form-data">
+								<input type="hidden" value="${currentFaculty.id}"
+									class="form-control" name="facultyId"> 
+									<input type="submit" class="w3-button w3-block w3-dark-grey"
+									value="+ add documents">
+							</form:form>
 					</div>
 				</c:forEach>
 			</c:if>
