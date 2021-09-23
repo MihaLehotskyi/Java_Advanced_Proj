@@ -63,8 +63,8 @@ public class AbiturientController {
         return map;
     }
     @RequestMapping(value ="/create-faculty", method = RequestMethod.GET)
-    public ModelAndView createFaculty() {
-        return new ModelAndView("createFaculty","faculty",new Faculty());
+    public String createFaculty() {
+    	return "createFaculty";
     }
     
     

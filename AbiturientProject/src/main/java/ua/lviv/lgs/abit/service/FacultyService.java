@@ -20,5 +20,7 @@ public class FacultyService {
 	public List<Faculty> getAll(){
 		return facultyRepository.findAll();
 	}
-	
+	public Faculty findById(Integer id) {
+		return facultyRepository.findById(id).get();
+	}
 }

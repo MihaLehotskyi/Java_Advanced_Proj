@@ -23,4 +23,8 @@ public class AbiturientService {
 	    	abit.setRole(UserRole.ROLE_ABITURIENT);
 	        abitRepository.save(abit);
 	    }
+	    
+	    public Abiturient findByEmail(String email) {
+	    	return abitRepository.findByEmail(email).get();
+	    }
 }

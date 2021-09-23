@@ -27,7 +27,7 @@ public class CustomAbiturientDetailsService implements UserDetailsService{
 			Abiturient abiturient = abit.get();
 			return new CustomAbiturientDetails(abiturient, Collections.singletonList(abiturient.getRole().toString()));
 			}
-		throw new UsernameNotFoundException("No such Abiturient present!");
+		throw new UsernameNotFoundException("No such Abiturient present :" + email);
 	}
 	
 

@@ -19,57 +19,53 @@
 		</div>
 
 		<div style="margin-left: 10%">
+			<div class="w3-container w3-teal">
+				<h1>Create new Faculty</h1>
+			</div>
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<div class="w3-container w3-teal">
-					<h1>Create new Faculty</h1>
-				</div>
-
-
-				<form:form method="POST" action="${contextPath}/addFaculty"
-					modelAttribute="faculty" enctype="multipart/form-data">
-					<table>
-						<tr>
-							<td>Name</td>
-							<td><input type="text" name="name" /></td>
-						</tr>
-						<tr>
-							<td>Maximum places</td>
-							<td><input type="text" name="maximumplaces" /></td>
-						</tr>
-						<tr>
-							<td>Minimal point</td>
-							<td><input type="number" name="minimalpoint" /></td>
-						</tr>
-						<tr>
-							<td>Select an image to upload</td>
-							<td><input type="file" name="image" /></td>
-						</tr>
-
-						<tr>
-							<td><input type="submit" value="Submit" /></td>
-						</tr>
-
-					</table>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</form:form>
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
 				</form>
-
 				<h2>
 					Welcome ${pageContext.request.userPrincipal.name} | <a
 						onclick="document.forms['logoutForm'].submit()">Logout</a>
 				</h2>
 
 			</c:if>
+
+
+			<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Maximum places</th>
+							<th>Minimal point</th>
+							<th>Image</th>
+							<th>Entry Date</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="myFaculties" items="${myFacultiesItems}">
+							<tr>
+								<td>${myFaculties.id}</td>
+								<td>${myFaculties.faculty.name}</td>
+								<td>${myFaculties.faculty.maximumplaces}</td>
+								<td>${myFaculties.faculty.minimalpoint}</td>
+								<td><img src="data:image/jpg;base64,${myFaculties.faculty.encodedImage}" alt="image" style="width: 10%"></td>
+								<td>${myFaculties.enteranceDate}</td>
+								<td><a href="myFacultie?id= ${myFaculties.id}">delete</a></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+
+
+
 		</div>
 
 	</div>
-	<!-- /container -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
