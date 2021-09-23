@@ -50,10 +50,9 @@
 							<h3>${currentFaculty.name}</h3>
 						</header>
 						<div class="w3-container">
-							<p>1 new friend request</p>
 							<hr>
 							<img
-								src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132484366.jpg"
+								src="data:image/jpg;base64,${currentFaculty.encodedImage}"
 								alt="Avatar" class="w3-left w3-circle w3-margin-right"
 								style="width: 60px">
 							<p>${currentFaculty.maximumplaces}</p>

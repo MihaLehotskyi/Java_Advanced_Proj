@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,10 @@ public class Faculty {
 	private Integer maximumplaces;
 	@Column
 	private Integer minimalpoint;
+	
+	@Lob
+	private String encodedImage;
+	
 	public Faculty(Integer id, String name, Integer maximumplaces, Integer minimalpoint) {
 		this.id = id;
 		this.name = name;
@@ -58,6 +63,13 @@ public class Faculty {
 	}
 	public void setMinimalpoint(Integer minimalpoint) {
 		this.minimalpoint = minimalpoint;
+	}
+	
+	public String getEncodedImage() {
+		return encodedImage;
+	}
+	public void setEncodedImage(String encodedImage) {
+		this.encodedImage = encodedImage;
 	}
 	@Override
 	public int hashCode() {
