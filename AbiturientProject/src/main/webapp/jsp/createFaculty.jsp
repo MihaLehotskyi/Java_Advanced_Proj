@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +15,15 @@
 <body>
 	<div class="container">
 		<div class="w3-sidebar w3-bar-block" style="width: 10%">
-			<a href="/create-faculty" class="w3-bar-item w3-button">Create
-				faculty</a> <a href="/home" class="w3-bar-item w3-button">Home</a> <a
-				href="/myFaculties" class="w3-bar-item w3-button">My faculties</a>
+			<a href="/home" class="w3-bar-item w3-button">Home</a>
+			
+			<security:authorize access="hasRole('ROLE_ADMIN')">
+			<a href="/create-faculty" class="w3-bar-item w3-button">Create faculty</a>  
+			</security:authorize>
+			
+			<security:authorize access="hasRole('ROLE_ABITURIENT')">
+			<a href="/myFaculties" class="w3-bar-item w3-button">My faculties</a>
+			</security:authorize>
 		</div>
 
 		<div style="margin-left: 10%">
