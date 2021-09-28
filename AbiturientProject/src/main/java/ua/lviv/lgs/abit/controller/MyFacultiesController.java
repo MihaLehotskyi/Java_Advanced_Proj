@@ -52,6 +52,11 @@ public class MyFacultiesController {
 		String userEmail = auth.getName();
 		Abiturient abiturient = abiturientService.findByEmail(userEmail);
 		myFaculties.setAbiturient(abiturient);
+		int avgpoint = (abiturient.getFirstsubjectpoint() + abiturient.getSecondsubjectpoint() +
+				abiturient.getThirdsubjectpoint())/3;
+		if(avgpoint < faculty.getMinimalpoint()) {
+			return getMyFacultiesItems();
+		}
 		
 		List list = new ArrayList<MyFaculties>();
 		list = myFacultiesService.getAll();	
@@ -61,6 +66,17 @@ public class MyFacultiesController {
 				return getMyFacultiesItems();
 			}
 		}
+		int counter = 0;
+		for (int i = 0; i < list.size(); i++) {
+			MyFaculties mf = (MyFaculties) list.get(i);
+			if(mf.getFaculty().equals(faculty)) {
+				counter++;
+				if(counter == faculty.getMaximumplaces()) {
+					return getMyFacultiesItems();
+				}
+			}
+		}
+		
 		myFacultiesService.add(myFaculties);
 		return getMyFacultiesItems();
     }

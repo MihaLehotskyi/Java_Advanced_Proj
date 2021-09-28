@@ -1,6 +1,6 @@
 package ua.lviv.lgs.abit.domain;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,6 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @Entity
 @Table(name = "abiturient")
@@ -23,11 +28,18 @@ public class Abiturient {
 	private String email;
 	private String password;
 	private String passwordConfirm;
+	@DateTimeFormat(iso=ISO.DATE)
 	private Date dateOfBirth;
+	@Column(name="firstsubject", unique=true)
+	@Enumerated(EnumType.STRING)
 	private Subject firstsubject;
 	private Integer firstsubjectpoint;
+	@Column(name="secondsubject", unique=true)
+	@Enumerated(EnumType.STRING)
 	private Subject secondsubject;
 	private Integer secondsubjectpoint;
+	@Column(name="thirdsubject", unique=true)
+	@Enumerated(EnumType.STRING)
 	private Subject thirdsubject;
 	private Integer thirdsubjectpoint;
 	
@@ -125,8 +137,8 @@ public class Abiturient {
 	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setDateOfBirth(Date now) {
+		this.dateOfBirth = now;
 	}
 	public Subject getFirstsubject() {
 		return firstsubject;
